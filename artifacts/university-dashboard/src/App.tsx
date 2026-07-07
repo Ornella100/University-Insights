@@ -4,8 +4,17 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import NotFound from '@/pages/not-found';
 import { Route, Switch, Router as WouterRouter } from 'wouter';
 import { Sidebar } from '@/components/layout/Sidebar';
-import Dashboard from '@/pages/Dashboard';
-import ComingSoon from '@/pages/ComingSoon';
+import Dashboard       from '@/pages/Dashboard';
+import EtudiantsPage   from '@/pages/EtudiantsPage';
+import EnseignantsPage from '@/pages/EnseignantsPage';
+import FilieresPage    from '@/pages/FilieresPage';
+import ClassesPage     from '@/pages/ClassesPage';
+import InscriptionsPage from '@/pages/InscriptionsPage';
+import PaiementsPage   from '@/pages/PaiementsPage';
+import RapportsPage    from '@/pages/RapportsPage';
+import CalendrierPage  from '@/pages/CalendrierPage';
+import NotificationsPage from '@/pages/NotificationsPage';
+import ParametresPage  from '@/pages/ParametresPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,28 +25,20 @@ const queryClient = new QueryClient({
   },
 });
 
-const modules: Array<{ path: string; title: string }> = [
-  { path: "/etudiants",     title: "Gestion des étudiants" },
-  { path: "/enseignants",   title: "Gestion des enseignants" },
-  { path: "/filieres",      title: "Filières & programmes" },
-  { path: "/classes",       title: "Classes & groupes" },
-  { path: "/inscriptions",  title: "Inscriptions administratives" },
-  { path: "/paiements",     title: "Module financier" },
-  { path: "/rapports",      title: "Rapports & statistiques" },
-  { path: "/calendrier",    title: "Calendrier académique" },
-  { path: "/notifications", title: "Notifications" },
-  { path: "/parametres",    title: "Paramètres" },
-];
-
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={Dashboard} />
-      {modules.map(({ path, title }) => (
-        <Route key={path} path={path}>
-          {() => <ComingSoon title={title} />}
-        </Route>
-      ))}
+      <Route path="/"             component={Dashboard} />
+      <Route path="/etudiants"    component={EtudiantsPage} />
+      <Route path="/enseignants"  component={EnseignantsPage} />
+      <Route path="/filieres"     component={FilieresPage} />
+      <Route path="/classes"      component={ClassesPage} />
+      <Route path="/inscriptions" component={InscriptionsPage} />
+      <Route path="/paiements"    component={PaiementsPage} />
+      <Route path="/rapports"     component={RapportsPage} />
+      <Route path="/calendrier"   component={CalendrierPage} />
+      <Route path="/notifications" component={NotificationsPage} />
+      <Route path="/parametres"   component={ParametresPage} />
       <Route component={NotFound} />
     </Switch>
   );
