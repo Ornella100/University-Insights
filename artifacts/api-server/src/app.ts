@@ -10,14 +10,14 @@ app.use(
   pinoHttp({
     logger,
     serializers: {
-      req(req) {
+      req(req: Record<string, unknown> & { url?: string }) {
         return {
-          id: req.id,
-          method: req.method,
-          url: req.url?.split("?")[0],
+          id: req["id"],
+          method: req["method"],
+          url: typeof req.url === "string" ? req.url.split("?")[0] : req.url,
         };
       },
-      res(res) {
+      res(res: { statusCode: number }) {
         return {
           statusCode: res.statusCode,
         };
